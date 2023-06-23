@@ -24,4 +24,4 @@ const
   });
 
 const Streamer = mongoose.model('Streamer', streamerSchema);
-module.exports = Streamer
+module.exports = Streamer;

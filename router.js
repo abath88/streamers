@@ -9,4 +9,4 @@ routes.post('/streamers', streamerController.create);
 routes.get('/streamer/:streamerId', streamerController.getOne);
 routes.put('/streamer/:streamerId/vote', streamerController.vote);
 
-module.exports = routes
+module.exports = routes;

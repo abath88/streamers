@@ -32,4 +32,4 @@ app.use(cors(corsOptions));
 
 app.use('/api', router);
 
-module.exports = app
+module.exports = app;

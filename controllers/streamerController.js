@@ -11,12 +11,12 @@ streamerController.getAll = (req, res) => {
           success: true,
           data: streamers
         }
-      )
+      );
     }).catch((error) => {
       return res.status(500).json({
         success: false,
         error
-      })
+      });
     })
 };
 
@@ -37,7 +37,7 @@ streamerController.create = (req, res) => {
       return res.status(200).json({
         success: true,
         data: newStreamer
-      })
+      });
     }).catch((error) => {
       return res.status(500).json({
         success: false,
@@ -85,7 +85,7 @@ streamerController.vote = (req, res) => {
       success: false,
       error
     });
-  }) ;
+  });
 };
 
 module.exports = streamerController;
