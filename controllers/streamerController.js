@@ -73,13 +73,32 @@ streamerController.getOne = (req, res) => {
 streamerController.vote = (req, res) => {
   const { vote } = req.body;
   const { streamerId } = req.params;
-  db.Streamer.findByIdAndUpdate(streamerId, { 
-    $inc: { votes: vote > 0 ? 1 : -1 }
-  }, {new: true}).then(streamer => {
-    return res.status(200).json({
-      success: true,
-      data: streamer
-    })
+  const userId = req.user._id.toHexString();
+  db.Streamer.findById(streamerId).then(streamer => {
+    if(streamer) {
+      if(vote) {
+        streamer.upvoted(userId) ? 
+          streamer.unvote():
+          streamer.upvote(userId);
+      } else {
+        streamer.upvoted(userId) ? 
+          streamer.unvote():
+          streamer.downvote(userId);
+      }
+
+      streamer.save();
+
+      return res.status(200).json({
+        success: true,
+        data: streamer
+      })
+    }
+    return res.status(404).json({
+      success: false,
+      error: {
+        message: 'Streamer not found'
+      }
+    });
   }).catch((error) => {
     return res.status(500).json({
       success: false,

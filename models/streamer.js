@@ -1,4 +1,5 @@
 const 
+  voting = require('mongoose-voting'),
   mongoose = require('mongoose'),
   { Schema } = require('mongoose'),
 
@@ -16,12 +17,10 @@ const
       type: String,
       enum: ['Twitch', 'YouTube', 'TikTok', 'Kick', 'Rumble'],
       default: 'Twitch'
-    },
-    votes: {
-      type: Number,
-      default: 0,
     }
   });
+
+streamerSchema.plugin(voting);
 
 const Streamer = mongoose.model('Streamer', streamerSchema);
 module.exports = Streamer;
