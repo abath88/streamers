@@ -78,11 +78,11 @@ streamerController.vote = (req, res) => {
     if(streamer) {
       if(vote) {
         streamer.upvoted(userId) ? 
-          streamer.unvote():
+          streamer.unvote(userId):
           streamer.upvote(userId);
       } else {
-        streamer.upvoted(userId) ? 
-          streamer.unvote():
+        streamer.downvoted(userId) ? 
+          streamer.unvote(userId):
           streamer.downvote(userId);
       }
 

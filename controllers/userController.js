@@ -45,7 +45,8 @@ userController.signIn = (req, res) => {
             success: true,
             data: {
               token: token, 
-              userId: user._id
+              userId: user._id,
+              username: user.username
             },
           });
         } else {
