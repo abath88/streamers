@@ -1,8 +1,10 @@
 const 
   Streamer = require('./streamer'),
-  User = require('./user');
+  User = require('./user'),
+  Stream = require('./stream');
 
 module.exports = {
   Streamer,
-  User
+  User,
+  Stream
 };

@@ -17,7 +17,8 @@ const
       type: String,
       enum: ['Twitch', 'YouTube', 'TikTok', 'Kick', 'Rumble'],
       default: 'Twitch'
-    }
+    },
+    streams: [ {type: mongoose.SchemaTypes.ObjectId, ref: 'Stream'} ]
   });
 
 streamerSchema.plugin(voting);

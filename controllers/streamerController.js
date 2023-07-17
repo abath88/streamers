@@ -48,8 +48,11 @@ streamerController.create = (req, res) => {
 
 streamerController.getOne = (req, res) => {
   const { streamerId } = req.params;
-  db.Streamer.findById(streamerId).then((streamer) => {
+  db.Streamer.findById(streamerId).populate('streams').then((streamer) => {
     if(streamer === null) {
+      streamer.game = streamer.streams.map(el => el.game);
+      streamer.game = new Array(new Set(streamer.game));
+      
       return res.status(404).json({
         success: false,
         error: {
